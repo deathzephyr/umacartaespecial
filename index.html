@@ -13,7 +13,6 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            /* REMOVIDO: overflow-x: hidden; para corrigir a causa real do problema */
         }
 
         body {
@@ -21,7 +20,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Garante que o fundo cubra a tela inteira */
+            min-height: 100vh;
             background: linear-gradient(to bottom right, #e4c9af, #d4e4f7, #e4c9af);
             background-attachment: fixed;
             font-family: 'Crimson Text', serif;
@@ -139,9 +138,8 @@
         /* === CORREÇÃO DEFINITIVA PARA CELULAR (RESPONSIVIDADE) =========== */
         /* =================================================================== */
         @media (max-width: 768px) {
-            /* Reseta o alinhamento do body para permitir a rolagem */
             body {
-                display: block;
+                display: block; /* Volta ao fluxo normal do documento */
                 padding: 15px 10px; /* Espaçamento seguro nas bordas */
                 background-attachment: scroll; /* Melhora a performance no mobile */
             }
@@ -155,6 +153,8 @@
                 font-size: 1.15em;
                 line-height: 1.9;
                 margin: 0 auto; /* Centraliza a carta na horizontal */
+                /* MUDANÇA CRUCIAL: Esta regra impede qualquer conteúdo de estourar a largura da tela */
+                overflow-x: hidden; 
             }
 
             .letter-header h1 {
@@ -167,9 +167,8 @@
                 margin-bottom: 1.5em;
             }
 
-            /* === CORREÇÃO PRINCIPAL: Reposiciona o selo para DENTRO da carta === */
+            /* Reposiciona o selo para dentro da carta, de forma segura */
             .wax-seal {
-                /* Posiciona o selo dentro da área do cabeçalho, sem estourar a largura */
                 top: 15px;
                 right: 15px;
                 width: 60px;
@@ -177,12 +176,10 @@
                 font-size: 1.8em;
             }
 
-            /* O "gotejamento" da cera pode ser removido no mobile para simplificar */
             .wax-seal::before {
-                display: none;
+                display: none; /* Simplifica o visual no mobile */
             }
 
-            /* Assinatura um pouco menor */
             .signature {
                 font-size: 1.8em;
             }
