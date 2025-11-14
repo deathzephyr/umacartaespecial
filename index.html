@@ -13,8 +13,7 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%;
-            overflow-x: hidden;
+            /* REMOVIDO: overflow-x: hidden; para corrigir a causa real do problema */
         }
 
         body {
@@ -22,6 +21,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh; /* Garante que o fundo cubra a tela inteira */
             background: linear-gradient(to bottom right, #e4c9af, #d4e4f7, #e4c9af);
             background-attachment: fixed;
             font-family: 'Crimson Text', serif;
@@ -139,23 +139,21 @@
         /* === CORREÇÃO DEFINITIVA PARA CELULAR (RESPONSIVIDADE) =========== */
         /* =================================================================== */
         @media (max-width: 768px) {
-            /* MUDANÇA CRÍTICA: Reseta o alinhamento do body para permitir a rolagem */
+            /* Reseta o alinhamento do body para permitir a rolagem */
             body {
-                display: block; /* Volta ao fluxo normal do documento */
-                height: auto; /* Permite que o corpo cresça conforme o conteúdo */
-                min-height: 100vh; /* Garante que o fundo cubra a tela inteira */
+                display: block;
                 padding: 15px 10px; /* Espaçamento seguro nas bordas */
                 background-attachment: scroll; /* Melhora a performance no mobile */
             }
 
             .letter-container {
-                padding: 0; /* Remove o padding extra do container */
+                padding: 0;
             }
 
             .letter {
                 padding: 40px 25px; /* Espaço interno otimizado */
-                font-size: 1.15em; /* Fonte maior para facilitar a leitura */
-                line-height: 1.9; /* Mais espaço entre linhas */
+                font-size: 1.15em;
+                line-height: 1.9;
                 margin: 0 auto; /* Centraliza a carta na horizontal */
             }
 
@@ -166,16 +164,22 @@
             /* Melhora a legibilidade removendo o recuo */
             .letter-body p {
                 text-indent: 0;
-                margin-bottom: 1.5em; /* Usa o espaçamento entre parágrafos */
+                margin-bottom: 1.5em;
             }
 
-            /* Selo menor e mais seguro para não cortar */
+            /* === CORREÇÃO PRINCIPAL: Reposiciona o selo para DENTRO da carta === */
             .wax-seal {
-                width: 65px;
-                height: 65px;
-                font-size: 1.9em;
-                top: -18px;
-                right: -18px;
+                /* Posiciona o selo dentro da área do cabeçalho, sem estourar a largura */
+                top: 15px;
+                right: 15px;
+                width: 60px;
+                height: 60px;
+                font-size: 1.8em;
+            }
+
+            /* O "gotejamento" da cera pode ser removido no mobile para simplificar */
+            .wax-seal::before {
+                display: none;
             }
 
             /* Assinatura um pouco menor */
