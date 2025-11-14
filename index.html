@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uma Carta Especial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Estilos Gerais e Fundo --- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom right, #e4c9af, #d4e4f7, #e4c9af);
+            background-attachment: fixed;
+            font-family: 'Crimson Text', serif;
+            color: #4a4a4a;
+        }
+
+        /* --- Container Principal da Carta --- */
+        .letter-container {
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box; /* Garante que o padding não adicione ao tamanho total */
+        }
+
+        .letter {
+            background-color: #fdfbf7;
+            max-width: 650px;
+            width: 100%;
+            padding: 70px 60px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            position: relative;
+            line-height: 1.8;
+            font-size: 1.1em;
+            text-align: justify;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1.5s ease-out forwards;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .letter:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25), 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Selo de Cera --- */
+        .wax-seal {
+            position: absolute;
+            top: -25px;
+            right: -25px;
+            width: 90px;
+            height: 90px;
+            background: #8B0000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 -3px 5px rgba(0,0,0,0.3);
+            font-family: 'Dancing Script', cursive;
+            color: #fdfbf7;
+            font-size: 2.5em;
+            z-index: 10;
+        }
+
+        .wax-seal::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 20px;
+            background: inherit;
+            border-radius: 0 0 50% 50%;
+        }
+
+        /* --- Tipografia e Elementos Internos --- */
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #dcdcdc;
+            padding-bottom: 20px;
+        }
+
+        .letter-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8em;
+            margin: 0;
+            color: #5a4a42;
+            font-weight: 700;
+        }
+
+        .letter-body p {
+            text-indent: 2em;
+            margin-bottom: 1.2em;
+        }
+
+        .letter-footer {
+            margin-top: 40px;
+            text-align: right;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            color: #3a2a22;
+            line-height: 1;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .signature:hover {
+            color: #8B0000;
+            transform: scale(1.05);
+        }
+
+        /* --- Animação de Entrada --- */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Responsividade para Dispositivos Móveis (Otimizada) --- */
+        @media (max-width: 768px) {
+            /* Ajuste no container para não cortar o selo */
+            .letter-container {
+                padding: 10px;
+            }
+
+            .letter {
+                padding: 40px 25px; /* Menos espaço interno para aproveitar a tela */
+                font-size: 1em;
+                line-height: 1.9; /* Mais espaço entre linhas para facilitar a leitura */
+            }
+
+            .letter-header h1 {
+                font-size: 2.2em;
+            }
+            
+            /* Remover o recuo do parágrafo no mobile é uma boa prática */
+            .letter-body p {
+                text-indent: 0;
+                margin-bottom: 1.5em; /* Aumenta o espaço entre parágrafos para compensar */
+            }
+
+            /* Selo menor e mais seguro para não ser cortado */
+            .wax-seal {
+                width: 65px;
+                height: 65px;
+                font-size: 1.9em;
+                top: -18px;
+                right: -18px;
+            }
+
+            /* Assinatura um pouco menor para não quebrar */
+            .signature {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="letter-container">
+        <article class="letter">
+            <!-- Selo de Cera -->
+            <div class="wax-seal">D</div>
+
+            <!-- Cabeçalho da Carta -->
+            <header class="letter-header">
+                <h1>Para o meu amor</h1>
+            </header>
+
+            <!-- Corpo da Carta -->
+            <main class="letter-body">
+                <p>
+                    Escrevo esta carta não apenas com estas linhas, mas com os sentimentos que preenchem os meus dias e os meus sonhos. Há momentos em que as palavras pareçam pequenas demais para conter a imensidão do que sinto por você, mas hoje, eu me arrisco a tentar.
+                </p>
+                <p>
+                    Lembro-me perfeitamente da primeira vez que a sua risada genuína encheu o ambiente. Amo sua risada mais do que tudo, foi como se uma luz se acendesse dentro de mim, revelando todos os espaços vazios que eu nem sabia que existiam. A partir daquele momento, cada instante ao seu lado tornou-se uma descoberta, como encontrar a peça que faltava no meu quebra-cabeça. Você não é apenas parte da minha vida; você se tornou o próprio motivo dela fazer sentido.
+                </p>
+                <p>
+                    Quero que saiba que, em cada desafio, você é a minha companheira de celebração. O amor que nutro por nós é a base sobre a qual construo minhas esperanças mais ousadas e meus projetos mais simples. É um porto seguro, uma chama quente, uma melodia constante.
+                </p>
+                <p>
+                    Obrigado por ser quem você é. Obrigado por me ver, me ouvir e me amar de uma forma que transforma o ordinário em extraordinário. Que esta carta encontre você bem e que sirva como um pequeno lembrete do imenso amor que carrego no coração por você, hoje e sempre.
+                </p>
+                <p>
+                    Eu te amo Debora Vitória Vezetiv de Souza, amo mais do que posso descrever, amo como nunca amei ninguém e espero que sinta o mesmo...
+                </p>
+            </main>
+
+            <!-- Rodapé da Carta -->
+            <footer class="letter-footer">
+                <p class="signature">Luan Dhony</p>
+            </footer>
+        </article>
+    </div>
+
+</body>
+</html>
