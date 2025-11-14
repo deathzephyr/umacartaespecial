@@ -31,7 +31,7 @@
         .letter-container {
             position: relative;
             padding: 20px;
-            box-sizing: border-box; /* Garante que o padding não adicione ao tamanho total */
+            box-sizing: border-box;
         }
 
         .letter {
@@ -134,30 +134,38 @@
             }
         }
 
-        /* --- Responsividade para Dispositivos Móveis (Otimizada) --- */
+        /* --- Responsividade para Dispositivos Móveis (Corrigida e Otimizada) --- */
         @media (max-width: 768px) {
-            /* Ajuste no container para não cortar o selo */
+            /* MUDANÇA CRUCIAL: Reseta o alinhamento para permitir a rolagem */
+            body {
+                display: block; /* Volta ao fluxo normal do documento */
+                padding: 15px; /* Adiciona um espaçamento seguro nas bordas da tela */
+                align-items: initial; /* Reseta o alinhamento */
+                justify-content: initial; /* Reseta o alinhamento */
+                background-attachment: scroll; /* Melhora performance e evita bugs no mobile */
+            }
+
             .letter-container {
-                padding: 10px;
+                padding: 10px; /* Mantém um pouco de espaço para o selo não cortar */
             }
 
             .letter {
-                padding: 40px 25px; /* Menos espaço interno para aproveitar a tela */
-                font-size: 1em;
-                line-height: 1.9; /* Mais espaço entre linhas para facilitar a leitura */
+                padding: 40px 25px; /* Espaço interno otimizado para telas pequenas */
+                font-size: 1.15em; /* Fonte um pouco maior para facilitar a leitura */
+                line-height: 1.9; /* Mais espaço entre linhas */
             }
 
             .letter-header h1 {
                 font-size: 2.2em;
             }
             
-            /* Remover o recuo do parágrafo no mobile é uma boa prática */
+            /* Remover o recuo do parágrafo no mobile melhora a leitura */
             .letter-body p {
                 text-indent: 0;
-                margin-bottom: 1.5em; /* Aumenta o espaço entre parágrafos para compensar */
+                margin-bottom: 1.5em; /* Aumenta o espaço entre parágrafos */
             }
 
-            /* Selo menor e mais seguro para não ser cortado */
+            /* Selo menor e mais seguro */
             .wax-seal {
                 width: 65px;
                 height: 65px;
@@ -166,7 +174,7 @@
                 right: -18px;
             }
 
-            /* Assinatura um pouco menor para não quebrar */
+            /* Assinatura um pouco menor para não quebrar em telas pequenas */
             .signature {
                 font-size: 1.8em;
             }
